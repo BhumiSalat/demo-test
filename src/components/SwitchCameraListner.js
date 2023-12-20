@@ -51,6 +51,8 @@ const SwitchCameraListner = () => {
         webcam.label.toLowerCase().includes(message.facingMode)
       )?.label;
 
+      console.log("deviceId, label", deviceId, label);
+
       setSelectedWebcamDevice({
         id: deviceId,
         label,
