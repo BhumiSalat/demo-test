@@ -66,73 +66,69 @@ function ParticipantGrid({ participantIds, isPresenting, sideBarMode }) {
           isPresenting && isMobile ? "flex-row" : "flex-col"
         } w-full h-full`}
       >
-        {participantIds.length <= 2 ? (
-          <PipLayout participantIds={participantIds} />
-        ) : (
-          Array.from(
-            { length: Math.ceil(participantIds.length / perRow) },
-            (_, i) => {
-              return (
-                <div
-                  key={`participant-${i}`}
-                  className={`flex flex-1  ${
-                    isPresenting
-                      ? participantIds.length === 1
-                        ? "justify-start items-start"
-                        : "items-center justify-center"
+        {Array.from(
+          { length: Math.ceil(participantIds.length / perRow) },
+          (_, i) => {
+            return (
+              <div
+                key={`participant-${i}`}
+                className={`flex flex-1  ${
+                  isPresenting
+                    ? participantIds.length === 1
+                      ? "justify-start items-start"
                       : "items-center justify-center"
-                  }`}
-                >
-                  {participantIds
-                    .slice(i * perRow, (i + 1) * perRow)
-                    .map((participantId) => {
-                      return (
-                        <div
-                          key={`participant_${participantId}`}
-                          className={`flex flex-1  ${
-                            isPresenting
-                              ? participantIds.length === 1
-                                ? "md:h-48 md:w-44 xl:w-52 xl:h-48 "
-                                : participantIds.length === 2
-                                ? `${
-                                    isPresenting && isMobile
-                                      ? "w-36 h-full md:w-44 xl:w-56 md:h-full"
-                                      : "md:w-44 xl:w-56"
-                                  } `
-                                : participantIds.length === 3
-                                ? `${
-                                    isPresenting && isMobile
-                                      ? "w-36 h-full md:w-44 xl:w-48 md:h-full"
-                                      : "md:w-44 xl:w-48"
-                                  } `
-                                : "md:w-44 xl:w-48"
-                              : "w-full"
-                          } items-center justify-center h-full ${
-                            participantIds.length === 1
-                              ? "md:max-w-7xl 2xl:max-w-[1480px] "
-                              : "md:max-w-lg 2xl:max-w-2xl"
-                          } overflow-clip overflow-hidden  p-1`}
-                        >
-                          {participantId == "NULL" ? (
-                            <PromoInfographic />
-                          ) : (
-                            <MemoizedParticipant
-                              participantId={participantId}
-                              showImageCapture={
-                                participantMode == participantModes.AGENT
-                              }
-                              showResolution={
-                                true //participantMode == participantModes.AGENT
-                              }
-                            />
-                          )}
-                        </div>
-                      );
-                    })}
-                </div>
-              );
-            }
-          )
+                    : "items-center justify-center"
+                }`}
+              >
+                {participantIds
+                  .slice(i * perRow, (i + 1) * perRow)
+                  .map((participantId) => {
+                    return (
+                      <div
+                        key={`participant_${participantId}`}
+                        className={`flex flex-1  ${
+                          isPresenting
+                            ? participantIds.length === 1
+                              ? "md:h-48 md:w-44 xl:w-52 xl:h-48 "
+                              : participantIds.length === 2
+                              ? `${
+                                  isPresenting && isMobile
+                                    ? "w-36 h-full md:w-44 xl:w-56 md:h-full"
+                                    : "md:w-44 xl:w-56"
+                                } `
+                              : participantIds.length === 3
+                              ? `${
+                                  isPresenting && isMobile
+                                    ? "w-36 h-full md:w-44 xl:w-48 md:h-full"
+                                    : "md:w-44 xl:w-48"
+                                } `
+                              : "md:w-44 xl:w-48"
+                            : "w-full"
+                        } items-center justify-center h-full ${
+                          participantIds.length === 1
+                            ? "md:max-w-7xl 2xl:max-w-[1480px] "
+                            : "md:max-w-lg 2xl:max-w-2xl"
+                        } overflow-clip overflow-hidden  p-1`}
+                      >
+                        {participantId == "NULL" ? (
+                          <PromoInfographic />
+                        ) : (
+                          <MemoizedParticipant
+                            participantId={participantId}
+                            showImageCapture={
+                              participantMode == participantModes.AGENT
+                            }
+                            showResolution={
+                              true //participantMode == participantModes.AGENT
+                            }
+                          />
+                        )}
+                      </div>
+                    );
+                  })}
+              </div>
+            );
+          }
         )}
       </div>
     </div>
