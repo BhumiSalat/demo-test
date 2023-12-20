@@ -59,7 +59,7 @@ const SwitchCameraListner = () => {
       });
 
       if (message.isChangeWebcam) {
-        // mMeeting?.disableWebcam();
+        mMeeting?.disableWebcam();
         customTrack = await getVideoTrack({
           webcamId: deviceId,
         });
